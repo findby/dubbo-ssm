@@ -1,0 +1,19 @@
+package com.develop.dubbo.consumer;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.develop.dubbo.api.DemoService;
+ 
+public class Consumer {
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"META-INF/spring/dubbo-demo-consumer.xml"});
+        context.start();
+        // Obtaining a remote service proxy
+        DemoService demoService = (DemoService)context.getBean("demoService");
+        // Executing remote methods
+        String hello = demoService.sayHello("world");
+        //demoService.showTime();
+        // Display the call result
+        System.out.println(hello);
+    }
+}
